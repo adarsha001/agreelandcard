@@ -1,0 +1,419 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Premium Property Card</title><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Syne:wght@700;800&family=Oswald:wght@500;700&display=swap" rel="stylesheet"><style>
+body {
+    background: #07111f;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 24px;
+    font-family: 'Inter', sans-serif;
+    background-image:
+        radial-gradient(circle at top left, rgba(37,99,235,0.18), transparent 35%),
+        radial-gradient(circle at top right, rgba(220,38,38,0.15), transparent 30%),
+        linear-gradient(to bottom, #08111f 0%, #050913 100%);
+}
+
+.card {
+    width: 850px;
+    background: #ffffff;
+    border-radius: 34px;
+    overflow: hidden;
+    box-shadow:
+        0 35px 80px rgba(0,0,0,0.45),
+        0 0 0 1px rgba(255,255,255,0.05);
+    position: relative;
+}
+
+.image-showcase {
+    height: 520px;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    background: #dbeafe;
+}
+
+.main-graphic {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1.03);
+    filter: contrast(1.08) saturate(1.08);
+}
+
+.image-showcase::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(to top,
+            rgba(0,0,0,0.85) 0%,
+            rgba(0,0,0,0.2) 38%,
+            rgba(0,0,0,0.08) 65%,
+            rgba(0,0,0,0.45) 100%);
+    z-index: 2;
+}
+
+.watermark {
+    position: absolute;
+    top: 22px;
+    left: 22px;
+    z-index: 10;
+
+    font-family: 'Oswald', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: #ffffff;
+
+    background: rgba(11,34,64,0.72);
+    backdrop-filter: blur(10px);
+    padding: 10px 18px;
+    border-radius: 40px;
+    border: 1px solid rgba(255,255,255,0.18);
+
+    box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+}
+
+.hero-header-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    text-align: center;
+    padding: 40px 42px;
+}
+
+.badge-row {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 14px;
+}
+
+.status-badge {
+    background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+    color: #ffffff;
+
+    font-family: 'Oswald', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+
+    padding: 7px 24px;
+    border-radius: 10px;
+
+    border: 2px solid rgba(255,255,255,0.18);
+
+    box-shadow:
+        0 10px 25px rgba(220,38,38,0.4),
+        inset 0 1px 0 rgba(255,255,255,0.18);
+}
+
+.project-display {
+    font-family: 'Oswald', sans-serif;
+    font-size: 64px;
+    font-weight: 700;
+    line-height: 0.95;
+
+    text-transform: uppercase;
+    letter-spacing: -1px;
+
+    margin-bottom: 10px;
+
+    color: #ffffff;
+
+    text-shadow:
+        0 6px 20px rgba(0,0,0,0.85),
+        0 2px 6px rgba(0,0,0,0.5);
+}
+
+.title-display {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 800;
+
+    text-transform: uppercase;
+    letter-spacing: 6px;
+
+    color: #ffcc00;
+
+    text-shadow: 0 2px 10px rgba(0,0,0,0.7);
+}
+
+.info-panel {
+    background: #ffffff;
+
+    padding: 34px 38px;
+
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 26px;
+
+    position: relative;
+}
+
+.specs-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    justify-content: center;
+}
+
+.spec-tile {
+    background: linear-gradient(to right, #f8fbff 0%, #eef4ff 100%);
+
+    border-radius: 18px;
+
+    padding: 18px 22px;
+
+    border-left: 6px solid #2563eb;
+
+    box-shadow:
+        0 10px 30px rgba(15,23,42,0.08),
+        inset 0 0 0 1px rgba(37,99,235,0.06);
+}
+
+.spec-tile:nth-child(2) {
+    border-left-color: #16a34a;
+}
+
+.label-text {
+    display: block;
+
+    font-size: 11px;
+    font-weight: 800;
+
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+
+    color: #64748b;
+
+    margin-bottom: 7px;
+}
+
+.value-text {
+    font-size: 20px;
+    font-weight: 800;
+    line-height: 1.35;
+
+    color: #0f172a;
+}
+
+.price-box {
+    position: relative;
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background: linear-gradient(145deg, #dc2626 0%, #991b1b 100%);
+
+    border-radius: 24px;
+
+    padding: 28px 22px;
+    min-height: 140px;
+
+    text-align: center;
+    color: #ffffff;
+
+    border: 3px dashed rgba(255,255,255,0.35);
+
+    box-shadow:
+        0 20px 40px rgba(220,38,38,0.28),
+        inset 0 0 30px rgba(0,0,0,0.18);
+}
+
+.price-box::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(135deg,
+            transparent 30%,
+            rgba(255,255,255,0.14) 50%,
+            transparent 70%);
+
+    transform: translateX(-100%);
+    animation: shine 5s linear infinite;
+}
+
+@keyframes shine {
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+.price-label {
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: #ffeb3b;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.4);
+    line-height: 1.2;
+}
+
+.price-display {
+    font-family: 'Oswald', sans-serif;
+    font-size: 44px;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: 0.5px;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+    width: 100%;
+    word-break: break-all;
+}
+
+
+.footer-bar {
+    background: #0b2240;
+
+    padding: 18px 38px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    color: rgba(255,255,255,0.7);
+
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.status-info {
+    display: flex;
+    align-items: center;
+}
+
+.status-info strong {
+    color: #ffcc00;
+
+    background: rgba(255,255,255,0.08);
+
+    padding: 5px 12px;
+
+    border-radius: 8px;
+
+    margin-left: 8px;
+}
+
+.source-display {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.source-display span {
+    color: #ffffff;
+    font-weight: 800;
+}
+
+@media(max-width: 850px) {
+
+    body {
+        padding: 12px;
+    }
+
+    .card {
+        width: 100%;
+        border-radius: 22px;
+    }
+
+    .image-showcase {
+        height: 420px;
+    }
+
+    .hero-header-overlay {
+        padding: 28px 24px;
+    }
+
+    .project-display {
+        font-size: 42px;
+    }
+
+    .title-display {
+        font-size: 12px;
+        letter-spacing: 4px;
+    }
+
+    .info-panel {
+        grid-template-columns: 1fr;
+        padding: 28px 22px;
+        gap: 20px;
+    }
+    
+    .price-box {
+        min-height: auto;
+        padding: 24px 20px;
+    }
+
+    .price-display {
+        font-size: 38px;
+    }
+
+    .footer-bar {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+        padding: 20px 24px;
+    }
+
+}</style></head><body><div class="card">
+    <div class="image-showcase">
+        <div class="watermark">AGREELAND</div>
+        <div class="hero-header-overlay">
+            <div class="badge-row">
+                <span class="status-badge" id="bhk">3 BHK</span>
+            </div>
+            <h1 class="project-display" id="project">Sobha Elan Prestige Park</h1>
+            <div class="title-display" id="title">Luxury Residences</div>
+        </div>
+        <img id="mainImage" class="main-graphic" src="https://images.unsplash.com/photo-1460317442991-0ec209397118?q=80&w=1200&auto=format&fit=crop" alt="Property Profile"/>
+    </div>
+    <div class="info-panel">
+        <div class="specs-stack">
+            <div class="spec-tile">
+                <span class="label-text">Location / Site Address</span>
+                <span class="value-text" id="location">Varthur-Gunjur Road, Bangalore</span>
+            </div>
+            <div class="spec-tile">
+                <span class="label-text">Area / Dimensions</span>
+                <span class="value-text" id="area">1450 sq.ft</span>
+            </div>
+        </div>
+     <div class="price-box">
+            <div class="price-label">Expected Investment</div>
+            <div class="price-display" id="price">₹2,35,00,000</div>
+        </div>
+    </div>
+    <div class="footer-bar">
+        <div class="status-info">Status: <strong id="availability" style="color: #4ade80;">Coming Soon</strong></div>
+        <div class="source-display">Source: <span id="source">magicbricks</span></div>
+    </div></div><script>const params = new URLSearchParams(window.location.search);function setText(id, param) {
+    const value = params.get(param);
+    if(value) {
+        document.getElementById(id).innerText = decodeURIComponent(value);
+    }
+}function setImage(id, param) {
+    const value = params.get(param);
+    if(value) {
+        document.getElementById(id).src = value;
+    }
+}
+setText('bhk', 'bhk');
+setText('title', 'title');
+setText('project', 'project');
+setText('location', 'location');
+setText('area', 'area');
+setText('price', 'price');
+setText('availability', 'availability');
+setText('source', 'source');
+setImage('mainImage', 'mainImage'); </script></body></html>
