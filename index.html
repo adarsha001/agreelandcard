@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Sobha Altair | Elite Estates</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,700;14..32,800&family=Oswald:wght@500;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -13,43 +13,52 @@
         }
 
         body {
-            background: #07111f;
+            background: #f1f5f9;
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 24px;
             font-family: 'Inter', sans-serif;
+            color: #1e293b;
         }
 
         .card {
-            width: 850px;
+            width: 1000px;
             max-width: 100%;
             background: #ffffff;
-            border-radius: 34px;
+            border-radius: 24px;
             overflow: hidden;
-            box-shadow: 0 35px 80px rgba(0,0,0,0.45);
+            box-shadow: 0 20px 50px rgba(15, 23, 42, 0.08);
+            display: grid;
+            grid-template-columns: 1.1fr 1.2fr;
         }
 
+        /* Left Side: Visual Showcase */
         .image-showcase {
-            height: 520px;
-            width: 100%;
+            height: 100%;
+            min-height: 550px;
             overflow: hidden;
             position: relative;
-            background: #0a1a2f;
+            background: #0f172a;
         }
 
         .main-graphic {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .card:hover .main-graphic {
+            transform: scale(1.03);
         }
 
         .image-showcase::after {
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 38%, rgba(0,0,0,0.08) 65%, rgba(0,0,0,0.45) 100%);
+            background: linear-gradient(to top, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23, 42, 0.3) 50%, rgba(15, 23, 42, 0) 100%);
             z-index: 2;
             pointer-events: none;
         }
@@ -61,131 +70,148 @@
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
-            text-align: center;
-            padding: 40px 42px;
+            padding: 40px;
         }
 
         .badge-row {
             display: flex;
-            justify-content: center;
-            margin-bottom: 14px;
+            gap: 10px;
+            margin-bottom: 16px;
         }
 
         .status-badge {
-            background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
-            color: #ffffff;
-            font-family: 'Oswald', sans-serif;
-            font-size: 14px;
+            background: #ffffff;
+            color: #0f172a;
+            font-size: 12px;
             font-weight: 700;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
             text-transform: uppercase;
-            padding: 7px 24px;
-            border-radius: 10px;
+            padding: 6px 16px;
+            border-radius: 100px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
 
         .project-display {
             font-family: 'Oswald', sans-serif;
-            font-size: 64px;
+            font-size: 48px;
             font-weight: 700;
-            line-height: 0.95;
+            line-height: 1.1;
             text-transform: uppercase;
-            letter-spacing: -1px;
-            margin-bottom: 10px;
+            margin-bottom: 6px;
             color: #ffffff;
-            text-shadow: 0 6px 20px rgba(0,0,0,0.85);
         }
 
         .title-display {
-            font-family: 'Inter', sans-serif;
             font-size: 14px;
-            font-weight: 800;
+            font-weight: 600;
+            letter-spacing: 2px;
             text-transform: uppercase;
-            letter-spacing: 6px;
-            color: #ffcc00;
+            transition: color 0.3s ease;
         }
 
+        /* Right Side: Content Panel */
         .info-panel {
             background: #ffffff;
-            padding: 34px 38px;
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 26px;
+            padding: 45px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border-left: 1px solid #f1f5f9;
+        }
+
+        .panel-body {
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
         }
 
         .specs-stack {
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            gap: 20px;
         }
 
         .spec-tile {
-            background: linear-gradient(to right, #f8fbff 0%, #eef4ff 100%);
-            border-radius: 18px;
-            padding: 18px 22px;
-            border-left: 6px solid #2563eb;
-        }
-
-        .spec-tile:nth-child(2) {
-            border-left-color: #16a34a;
-        }
-
-        .label-text {
-            display: block;
-            font-size: 11px;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: #64748b;
-            margin-bottom: 7px;
-        }
-
-        .value-text {
-            font-size: 20px;
-            font-weight: 800;
-            line-height: 1.35;
-            color: #0f172a;
-        }
-
-        .footer-bar {
-            background: #0b2240;
-            padding: 18px 38px;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            color: rgba(255,255,255,0.7);
-            font-size: 13px;
-            font-weight: 600;
-        }
-
-        .status-info {
-            display: flex;
-            align-items: center;
+            flex-direction: column;
             gap: 6px;
         }
 
-        .status-info strong {
-            color: #facc15;
-            background: rgba(255,255,255,0.08);
-            padding: 5px 12px;
-            border-radius: 8px;
-            margin-left: 8px;
-            font-weight: 800;
+        .label-text {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #94a3b8;
         }
 
-        @media(max-width: 850px) {
+        .value-text {
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 1.6;
+            color: #334155;
+        }
+
+        /* Specific emphasis styling */
+        #locationElement {
+            font-size: 22px;
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        .divider {
+            height: 1px;
+            background: #f1f5f9;
+            width: 100%;
+            margin: 8px 0;
+        }
+
+        /* Footer Bar Area */
+        .footer-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 24px;
+            margin-top: 32px;
+            border-top: 1px solid #f1f5f9;
+        }
+
+        .status-info {
+            font-size: 14px;
+            font-weight: 600;
+            color: #64748b;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .status-info strong {
+            background: #fef9c3;
+            color: #854d0e;
+            padding: 6px 16px;
+            border-radius: 100px;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+        }
+
+        /* Responsive Breakpoints */
+        @media(max-width: 900px) {
+            .card {
+                grid-template-columns: 1fr;
+                border-radius: 16px;
+            }
             .image-showcase {
-                height: 420px;
+                height: 380px;
+                min-height: auto;
             }
             .project-display {
-                font-size: 42px;
+                font-size: 36px;
             }
             .info-panel {
-                padding: 28px 22px;
-            }
-            .footer-bar {
-                flex-direction: column;
-                gap: 10px;
-                text-align: center;
+                padding: 32px 24px;
             }
         }
     </style>
@@ -193,6 +219,7 @@
 <body>
 
 <div class="card">
+    <!-- Visual Side -->
     <div class="image-showcase">
         <div class="hero-header-overlay">
             <div class="badge-row">
@@ -203,25 +230,35 @@
         </div>
         <img id="mainImage" class="main-graphic" src="https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?q=80&w=1200&auto=format&fit=crop" alt="Property">
     </div>
+    
+    <!-- Info Side -->
     <div class="info-panel">
-        <div class="specs-stack">
-            <div class="spec-tile">
-                <span class="label-text">Location</span>
-                <span class="value-text" id="locationElement">Sarjapur Road, Bangalore</span>
-            </div>
-            <div class="spec-tile">
-                <span class="label-text">Description</span>
-                <span class="value-text" id="descriptionElement">The total land area under development is 15 acres. The project comprises of high-rise apartments with multiple towers and floors. Total units available range from 3BHK to 4BHK types. Amenities include a gym, swimming pool, and elevators.</span>
+        <div class="panel-body">
+            <div class="specs-stack">
+                <div class="spec-tile">
+                    <span class="label-text">Location</span>
+                    <span class="value-text" id="locationElement">Sarjapur Road, Bangalore</span>
+                </div>
+                
+                <div class="divider"></div>
+                
+                <div class="spec-tile">
+                    <span class="label-text">Project Overview</span>
+                    <span class="value-text" id="descriptionElement">The total land area under development is 15 acres. The project comprises of high-rise apartments with multiple towers and floors. Total units available range from 3BHK to 4BHK types. Amenities include a gym, swimming pool, and elevators.</span>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="footer-bar">
-        <div class="status-info">Status: <strong id="availabilityElement">Coming Soon</strong></div>
+        
+        <div class="footer-bar">
+            <div class="status-info">
+                Status <strong id="availabilityElement">Coming Soon</strong>
+            </div>
+        </div>
     </div>
 </div>
 
 <script>
-    // Default data
+    // Default data configuration
     const defaultData = {
         bhk: "3 & 4 BHK",
         projectName: "Sobha Altair",
@@ -232,7 +269,17 @@
         mainImage: "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?q=80&w=1200&auto=format&fit=crop"
     };
 
-    // Function to get URL parameters
+    // Array of luxury accent colors optimized to pop over dark image overlays
+    const luxuryColors = [
+        '#38bdf8', // Vibrant Sky Blue
+        '#facc15', // Premium Gold / Warm Yellow
+        '#f472b6', // Champagne Rose Pink
+        '#fb923c', // Sunset Amber
+        '#2dd4bf', // Coastal Emerald Teal
+        '#a78bfa'  // Orchid Purple
+    ];
+
+    // Function to parse parameters out of the URL string
     function getUrlParams() {
         const params = new URLSearchParams(window.location.search);
         return {
@@ -246,7 +293,7 @@
         };
     }
 
-    // Function to update card with data
+    // Main function to write dataset values to the HTML DOM structure
     function updateCard(data) {
         if (data.bhk) {
             document.getElementById('bhkElement').innerText = data.bhk;
@@ -255,7 +302,12 @@
             document.getElementById('projectNameElement').innerText = data.projectName;
         }
         if (data.projectTitle) {
-            document.getElementById('titleElement').innerText = data.projectTitle;
+            const titleElem = document.getElementById('titleElement');
+            titleElem.innerText = data.projectTitle;
+            
+            // Generate a secure random index and bind styling directly to the text token
+            const randomColor = luxuryColors[Math.floor(Math.random() * luxuryColors.length)];
+            titleElem.style.color = randomColor;
         }
         if (data.location) {
             document.getElementById('locationElement').innerText = data.location;
@@ -264,14 +316,20 @@
             document.getElementById('descriptionElement').innerText = data.description;
         }
         if (data.availability) {
-            document.getElementById('availabilityElement').innerText = data.availability;
-            
-            // Update color based on availability
             const availElem = document.getElementById('availabilityElement');
-            if (data.availability.toLowerCase().includes('coming') || data.availability.toLowerCase().includes('soon')) {
-                availElem.style.color = "#facc15";
-            } else if (data.availability.toLowerCase().includes('ready') || data.availability.toLowerCase().includes('available')) {
-                availElem.style.color = "#4ade80";
+            availElem.innerText = data.availability;
+            
+            // Adjust the status pill color structure depending on context signals
+            const text = data.availability.toLowerCase();
+            if (text.includes('coming') || text.includes('soon')) {
+                availElem.style.background = "#fef9c3";
+                availElem.style.color = "#854d0e";
+            } else if (text.includes('ready') || text.includes('available') || text.includes('live')) {
+                availElem.style.background = "#dcfce7";
+                availElem.style.color = "#166534";
+            } else {
+                availElem.style.background = "#f1f5f9";
+                availElem.style.color = "#334155";
             }
         }
         if (data.mainImage) {
@@ -279,11 +337,10 @@
         }
     }
 
-    // Get URL parameters and merge with default
+    // Application state initialization
     const urlParams = getUrlParams();
-    
-    // Check if any URL parameter exists
     let hasUrlData = false;
+    
     for (let key in urlParams) {
         if (urlParams[key] && urlParams[key].trim() !== "") {
             hasUrlData = true;
@@ -291,7 +348,6 @@
         }
     }
 
-    // If URL has parameters, use them (overriding defaults only where provided)
     if (hasUrlData) {
         const mergedData = {
             bhk: urlParams.bhk || defaultData.bhk,
@@ -304,7 +360,6 @@
         };
         updateCard(mergedData);
     } else {
-        // Use default data
         updateCard(defaultData);
     }
 </script>
