@@ -196,29 +196,118 @@
     <div class="image-showcase">
         <div class="hero-header-overlay">
             <div class="badge-row">
-                <span class="status-badge">3 & 4 BHK</span>
+                <span class="status-badge" id="bhkElement">3 & 4 BHK</span>
             </div>
-            <h1 class="project-display">Sobha Altair</h1>
-            <div class="title-display">Premium Apartments</div>
+            <h1 class="project-display" id="projectNameElement">Sobha Altair</h1>
+            <div class="title-display" id="titleElement">Premium Apartments</div>
         </div>
-        <img class="main-graphic" src="https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?q=80&w=1200&auto=format&fit=crop" alt="Sobha Altair">
+        <img id="mainImage" class="main-graphic" src="https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?q=80&w=1200&auto=format&fit=crop" alt="Property">
     </div>
     <div class="info-panel">
         <div class="specs-stack">
             <div class="spec-tile">
                 <span class="label-text">Location</span>
-                <span class="value-text">Sarjapur Road, Bangalore</span>
+                <span class="value-text" id="locationElement">Sarjapur Road, Bangalore</span>
             </div>
             <div class="spec-tile">
                 <span class="label-text">Description</span>
-                <span class="value-text">The total land area under development is 15 acres. The project comprises of high-rise apartments with multiple towers and floors. Total units available range from 3BHK to 4BHK types. Amenities include a gym, swimming pool, and elevators.</span>
+                <span class="value-text" id="descriptionElement">The total land area under development is 15 acres. The project comprises of high-rise apartments with multiple towers and floors. Total units available range from 3BHK to 4BHK types. Amenities include a gym, swimming pool, and elevators.</span>
             </div>
         </div>
     </div>
     <div class="footer-bar">
-        <div class="status-info">Status: <strong>Coming Soon</strong></div>
+        <div class="status-info">Status: <strong id="availabilityElement">Coming Soon</strong></div>
     </div>
 </div>
+
+<script>
+    // Default data
+    const defaultData = {
+        bhk: "3 & 4 BHK",
+        projectName: "Sobha Altair",
+        projectTitle: "Premium Apartments",
+        location: "Sarjapur Road, Bangalore",
+        description: "The total land area under development is 15 acres. The project comprises of high-rise apartments with multiple towers and floors. Total units available range from 3BHK to 4BHK types. Amenities include a gym, swimming pool, and elevators.",
+        availability: "Coming Soon",
+        mainImage: "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?q=80&w=1200&auto=format&fit=crop"
+    };
+
+    // Function to get URL parameters
+    function getUrlParams() {
+        const params = new URLSearchParams(window.location.search);
+        return {
+            bhk: params.get('bhk'),
+            projectName: params.get('projectName'),
+            projectTitle: params.get('projectTitle'),
+            location: params.get('location'),
+            description: params.get('description'),
+            availability: params.get('availability'),
+            mainImage: params.get('mainImage')
+        };
+    }
+
+    // Function to update card with data
+    function updateCard(data) {
+        if (data.bhk) {
+            document.getElementById('bhkElement').innerText = data.bhk;
+        }
+        if (data.projectName) {
+            document.getElementById('projectNameElement').innerText = data.projectName;
+        }
+        if (data.projectTitle) {
+            document.getElementById('titleElement').innerText = data.projectTitle;
+        }
+        if (data.location) {
+            document.getElementById('locationElement').innerText = data.location;
+        }
+        if (data.description) {
+            document.getElementById('descriptionElement').innerText = data.description;
+        }
+        if (data.availability) {
+            document.getElementById('availabilityElement').innerText = data.availability;
+            
+            // Update color based on availability
+            const availElem = document.getElementById('availabilityElement');
+            if (data.availability.toLowerCase().includes('coming') || data.availability.toLowerCase().includes('soon')) {
+                availElem.style.color = "#facc15";
+            } else if (data.availability.toLowerCase().includes('ready') || data.availability.toLowerCase().includes('available')) {
+                availElem.style.color = "#4ade80";
+            }
+        }
+        if (data.mainImage) {
+            document.getElementById('mainImage').src = data.mainImage;
+        }
+    }
+
+    // Get URL parameters and merge with default
+    const urlParams = getUrlParams();
+    
+    // Check if any URL parameter exists
+    let hasUrlData = false;
+    for (let key in urlParams) {
+        if (urlParams[key] && urlParams[key].trim() !== "") {
+            hasUrlData = true;
+            break;
+        }
+    }
+
+    // If URL has parameters, use them (overriding defaults only where provided)
+    if (hasUrlData) {
+        const mergedData = {
+            bhk: urlParams.bhk || defaultData.bhk,
+            projectName: urlParams.projectName || defaultData.projectName,
+            projectTitle: urlParams.projectTitle || defaultData.projectTitle,
+            location: urlParams.location || defaultData.location,
+            description: urlParams.description || defaultData.description,
+            availability: urlParams.availability || defaultData.availability,
+            mainImage: urlParams.mainImage || defaultData.mainImage
+        };
+        updateCard(mergedData);
+    } else {
+        // Use default data
+        updateCard(defaultData);
+    }
+</script>
 
 </body>
 </html>
